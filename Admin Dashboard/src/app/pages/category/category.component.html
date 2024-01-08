@@ -1,0 +1,120 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h4 class="card-title">Categories</h4>
+          </div>
+          <div class="col-auto">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add
+              Category</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive" *ngIf="categories && categories.length > 0">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                Name
+              </th>
+              <th>
+                Small Description
+              </th>
+              <th class="text-right">
+                Action
+              </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let category of categories">
+                <!-- <td>
+                                  <img *ngIf="categoryData.image!==null" [src]="url+'uploads/'+category.image" alt=""
+                                      width="100px" height="100px">
+                              </td> -->
+                <td>{{ category.name }}</td>
+                <td>{{ category.description }}</td>
+                <td class="text-right">
+                  <button class="btn btn-primary" (click)="deletecategoryData(category)"
+                    style="background-color: #EF8157;color: white;">Delete</button>&nbsp;&nbsp;
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                    style="background-color: #EF8157;color: white;">
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="alert alert-warning text-center" role="alert" *ngIf="(!categories || categories.length === 0)"
+          style="background-color: #EF8157;">
+          <span class="font-weight-bold">No data is available</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- <div class="mb-3">
+            <label for="categoryName" class="form-label">Upload Image</label>
+            <label class="form-control" for="uploadpr" style="background-color: #fff;color: #547eda;"><input type="file"
+                id="uploadpr" (change)="onselectImage($event)" hidden><b>Upload Photo</b></label>
+          </div> -->
+          <div class="mb-3">
+            <label for="categoryName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="categoryName" [(ngModel)]="categoryData.name">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Short Description</label>
+            <input type="text" class="form-control" id="description" [(ngModel)]="categoryData.description">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="saveCategory()">Save
+          changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- edit -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Name</label>
+            <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea class="form-control" id="description" rows="4"
+                [(ngModel)]="categoryData.description"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

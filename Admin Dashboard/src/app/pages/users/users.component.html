@@ -1,0 +1,146 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Users</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                Image
+              </th>
+              <th>
+                Name
+              </th>
+              <th>
+                Email
+              </th>
+              <th>
+                Gender
+              </th>
+              <th class="text-right">
+                Action
+              </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td><img *ngIf="user.image!==null" class="img-fluid rounded-circle" [src]="url+'uploads/'+user.image"
+                    alt="" width="100px" height="100px">
+                </td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.gender }}</td>
+                <td class="text-right">
+                  <button *ngIf="user" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModaldetail" style="background-color: #EF8157;color: white;"
+                    (click)="openUserDetailModal(user)">
+                    Detail
+                  </button>&nbsp;
+                  <button class="btn btn-primary" (click)="deleteuserData(user)"
+                    style="background-color: #EF8157;color: white;">Delete</button>&nbsp;
+                  <button *ngIf="user" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModaledit" (click)="getSelectedUser(user)"
+                    style="background-color: #EF8157;color: white;">
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModaldetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background-color: #fff; border-radius: 10px;">
+      <div class="modal-header" style="background-color: #34B5B8; color: #fff; border-radius: 10px 10px 0 0;">
+        <h5 class="modal-title" id="exampleModalLabel">User Detail</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          style="color: #fff;"></button>
+      </div>
+      <div class="modal-body" *ngIf="selectedUser" style="padding: 20px;">
+        <div class="text-center">
+          <img *ngIf="selectedUser.image" class="img-fluid rounded-circle" [src]="url+'uploads/'+selectedUser.image"
+            alt="User Image" style="width: 150px; height: 150px; border: 5px solid #34B5B8;">
+          <h4 style="font-size: 24px; margin: 10px 0; color: #333;">{{ selectedUser.name }}</h4>
+          <p style="font-size: 18px; color: #666;">{{ selectedUser.role }}</p>
+        </div>
+        <hr style="margin: 20px 0; border-top: 1px solid #ddd;">
+        <div class="row" style="margin-left: 20px;">
+          <div class="col-md-6">
+            <div class="user-detail-item">
+              <h6 style="color: #333; margin-bottom: 5px;font-weight: bold;">Gender</h6>
+              <p style="font-size: 16px; color: #555;margin-left: 20px;">{{ selectedUser.gender }}</p>
+            </div>
+            <div class="user-detail-item">
+              <h6 style="color: #333; margin-bottom: 5px;font-weight: bold;">Email</h6>
+              <p style="font-size: 16px; color: #555;margin-left: 20px;">{{ selectedUser.email }}</p>
+            </div>
+            <div class="user-detail-item">
+              <h6 style="color: #333; margin-bottom: 5px;font-weight: bold;">Bio</h6>
+              <p style="font-size: 13px; color: #555; margin-left: 20px;">{{ selectedUser.bio }}</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="user-detail-item">
+              <h6 style="color: #333; margin-bottom: 5px;font-weight: bold;">Phone No</h6>
+              <p style="font-size: 16px; color: #555;margin-left: 20px;">{{ selectedUser.phone }}</p>
+            </div>
+            <div class="user-detail-item">
+              <h6 style="color: #333; margin-bottom: 5px; font-weight: bold;">Address</h6>
+              <p style="font-size: 16px; color: #555;margin-left: 20px;">{{ selectedUser.address }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer"
+        style="background-color: #f7f7f7; border-top: 1px solid #ddd; border-radius: 0 0 10px 10px;">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+          style="background-color: #34B5B8; color: #fff; border-radius: 5px;">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModaledit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Users</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Change username</label>
+            <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+              [(ngModel)]="updateData.name">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Change Email</label>
+            <input type="email" class="form-control" id="exampleInputPassword1" [(ngModel)]="updateData.email">
+          </div>
+          <div class="mb-3">
+            <label for="genderSelect" class="form-label">Change Gender</label>
+            <select class="form-select" id="genderSelect" value="updateData.gender" [(ngModel)]="updateData.gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Change Phone no:</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" [(ngModel)]="updateData.phone">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button *ngIf="!updated" type="button" class="btn btn-primary" (click)="updateUser(user)">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

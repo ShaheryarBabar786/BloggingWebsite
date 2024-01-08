@@ -1,0 +1,95 @@
+<div class="wrapper">
+  <div class="page-header" style="background-image: url('./assets/img/login-image.jpg');">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
+          <div class="card card-register">
+            <h3 class="title">Signup</h3>
+
+            <form class="register-form" (ngSubmit)="Signup(myForm.value)" #myForm="ngForm">
+              <label>Name</label>
+              <div class="input-group form-group-no-border">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="nc-icon nc-single-02"></i>
+                  </span>
+                </div>
+
+                <input type="text" class="form-control" placeholder="Name" ngModel name="name">
+              </div>
+
+              <label>Email</label>
+              <div class="input-group form-group-no-border">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="nc-icon nc-email-85"></i>
+                  </span>
+                </div>
+
+                <input type="text" class="form-control" placeholder="Email" ngModel name="email" #emailInput>
+              </div>
+
+              <label>Password</label>
+              <div class="input-group form-group-no-border">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="nc-icon nc-key-25"></i>
+                  </span>
+                </div>
+                <input type="password" class="form-control" placeholder="Password" ngModel name="password"
+                  #passwordInput>
+              </div>
+              <label>Confirm Password</label>
+              <div class="input-group form-group-no-border">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="nc-icon nc-key-25"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control" placeholder="Password">
+              </div>
+              <label>Phone no</label>
+              <div class="input-group form-group-no-border">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="nc-icon nc-mobile"></i>
+                  </span>
+                </div>
+                <input type="tel" id="phone-number" class="form-control" placeholder="Phone Number" name="phone"
+                  [(ngModel)]="selectedNumber">
+              </div>
+              <label for="gender">Gender</label>
+              <br>
+              <div class="mb-3">
+                <select class="form-select" name="gender" id="gender" [(ngModel)]="selectedGender"
+                  style="width: 100%; height: 40px; border-color: #ffffff;">
+                  <option value="" disabled selected>Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+
+              <button class="btn btn-danger btn-block btn-round" type="submit" [disabled]="isButtonDisabled"
+                *ngIf="!isButtonDisabled">Sign up</button>
+              <button class="btn btn-danger btn-block btn-round" type="button" [disabled]="isButtonDisabled"
+                *ngIf="isButtonDisabled">Signing up...</button>
+            </form>
+            <div class="forgot" style="display: flex; align-items: center;">
+              <p class="btn-link" style="color: #dc3545; margin-right: 10px;">Already have an account?</p>
+              <a href="#" class="btn btn-round btn-link"
+                style="background-color: #ffffff; border-color: #ffffff; color: #F33816; display: inline-block;"
+                (click)="navigateToLogin()">Login</a>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

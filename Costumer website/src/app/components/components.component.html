@@ -1,0 +1,151 @@
+<div class="wrapper">
+    <div class="page-header section-dark" style="background-image: url('assets/img/antoine-barres.jpg')">
+        <div class="filter"></div>
+        <div class="content-center">
+            <div class="container" style="margin-bottom: 50px;">
+                <div class="fog-low">
+                    <img src="assets/img/fog-low.png" alt="">
+                </div>
+                <div class="fog-low right">
+                    <img src="assets/img/fog-low.png" alt="">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="page-carousel" style="width: 80%; height: 100%;">
+            <ngb-carousel>
+                <ng-template ngbSlide>
+                    <img src="./assets/img/soroush-karimi.jpg" alt="Random first slide">
+                    <div class="carousel-caption">
+                        <p>Somewhere</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <img src="./assets/img/federico-beccari.jpg" alt="Random second slide">
+                    <div class="carousel-caption">
+                        <p>Somewhere else</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <img src="./assets/img/joshua-stannard.jpg" alt="Random third slide">
+                    <div class="carousel-caption">
+                        <p>Here it is</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <img src="./assets/img/soroush-karimi.jpg" alt="Random first slide">
+                    <div class="carousel-caption">
+                        <p>Somewhere</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <img src="./assets/img/federico-beccari.jpg" alt="Random second slide">
+                    <div class="carousel-caption">
+                        <p>Somewhere else</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <img src="./assets/img/joshua-stannard.jpg" alt="Random third slide">
+                    <div class="carousel-caption">
+                        <p>Here it is</p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+
+        </div>
+        <div class="moving-clouds" style="background-image: url('assets/img/clouds.png'); "></div>
+
+    </div>
+
+    <!-- main body -->
+
+
+    <div class="main">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search Blogs...">
+                        <button class="btn btn-primary" type="button"
+                            style="background-color: #344D85; border-color: #344D85;">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container text-center">
+
+            <div class="row justify-content-md-center sharing-area text-center">
+
+                <!-- Sidebar -->
+
+                <div class="col-md-3 col-lg-3 mb-4">
+                    <div class="p-3 border rounded categories-card d-flex flex-column align-items-center">
+                        <h3 class="categories-title mb-3">Categories</h3>
+                        <div class="w-100" *ngFor="let category of categories;">
+                            <button class="btn btn-category  btn-block btn-sm mb-2"
+                                style="background-color: #344D85; color: #ffffff; border-color: #344D85;"
+                                (click)="onCategoryClick(category._id)">{{category.name}}</button>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- Blog List -->
+
+
+                <div class="text-center col-md-10 col-lg-9">
+                    <div class="p-3 border rounded categories-card d-flex flex-row flex-wrap">
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <h3 class="categories-title mb-3">Blogs List</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-4" *ngFor="let blog of blogs;">
+                                <div class="card">
+                                    <img class="card-img-top" *ngIf="blog.image !== null && blog.image !== undefined"
+                                        [src]="url + 'uploads/' + blog.image">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{blog.name}}</h5>
+                                        <h6 class="card-title">{{blog.mainHeading}}</h6>
+                                        <p class="card-text">{{ blog.truncatedDescription }}</p>
+                                        <a href="#" class="btn btn-primary"
+                                            style="background-color: #344D85; color: #ffffff; border-color: #344D85;">Go
+                                            somewhere</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container text-center">
+
+            <div class="row justify-content-md-center sharing-area text-center">
+                <div class="text-center col-md-12 col-lg-8">
+                    <h3>Thank you for supporting us!</h3>
+                </div>
+                <div class="text-center col-md-12 col-lg-8 mb-5">
+
+                    <a href="#pablo" class="btn btn-facebook-bg facebook-sharrre btn-round" rel="tooltip"
+                        title="Share!">
+                        <i class="fa fa-facebook-square"></i> Facebook
+                    </a>
+
+                    <a href="#pablo" class="btn btn-linkedin-bg linkedin-sharrre btn-round" rel="tooltip"
+                        title="Share!">
+                        <i class="fa fa-linkedin-square"></i> Linkedin
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

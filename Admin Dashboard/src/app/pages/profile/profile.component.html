@@ -1,0 +1,327 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="card-title">Profile</h4>
+            </div>
+            <div class="card-body">
+                <div class="text-center">
+
+                    <div (click)="getSelectedUser()">
+                        <ng-container *ngIf="userData.image; else addImage">
+
+                            <img *ngIf="userData.image!==null" class="img-fluid rounded-circle"
+                                [src]="url+'uploads/'+userData.image" alt="" width="100px" height="100px">
+                        </ng-container>
+                        <ng-template #addImage>
+                            <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal12"
+                                style="background-color: #EF8157;color: white;">upload image</button>
+
+                        </ng-template>
+                    </div>
+                    <h5 class="title mt-3" style="color: #51CBCE;">
+
+
+                        <ng-container *ngIf="userData.name; else addName">
+                            {{userData.name}}
+                        </ng-container>
+                        <ng-template #addName>
+                            <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                style="background-color: #EF8157;color: white;">Add
+                                Name</button>
+                        </ng-template>
+                    </h5>
+
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="list-unstyled">
+
+                            <li>
+
+                            <li>
+                                <p class="description">
+                                    <i class="fas fa-envelope me-3"></i>
+                                    <ng-container *ngIf="userData.email; else addEmail">
+                                        <strong>{{ userData.email }}</strong>
+                                    </ng-container>
+                                    <ng-template #addEmail>
+                                        <button class="btn btn-link" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal1"
+                                            style="background-color: #EF8157;color: white;">Add
+                                            Email</button>
+                                    </ng-template>
+                                </p>
+                            </li>
+                            <li>
+                                <p class="description">
+                                    <i class="fas fa-user-friends me-3"></i>
+                                    <ng-container *ngIf="userData.bio; else addBio">
+                                        <strong>{{ userData.bio }}</strong>
+                                    </ng-container>
+                                    <ng-template #addBio>
+                                        <button class="btn btn-link" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal2"
+                                            style="background-color: #EF8157;color: white;"
+                                            (click)="getSelectedUser()">Add Bio</button>
+                                    </ng-template>
+                                </p>
+                            </li>
+                            <li>
+                                <p class="description">
+                                    <i class="fas fa-mars me-3"></i>
+                                    <ng-container *ngIf="userData.gender !== undefined; else addGender">
+                                        <strong>{{ userData.gender ? 'Male' : 'Female' }}</strong>
+                                    </ng-container>
+                                    <ng-template #addGender>
+                                        <button class="btn btn-link" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal3"
+                                            style="background-color: #EF8157;color: white;">Add
+                                            Gender</button>
+                                    </ng-template>
+                                </p>
+                            </li>
+
+                            <li>
+                                <p class="description">
+                                    <i class="fas fa-map-marker-alt me-3"></i>
+                                    <ng-container *ngIf="userData.address; else addAddress">
+                                        <strong>{{ userData.address }}</strong>
+                                    </ng-container>
+                                    <ng-template #addAddress>
+                                        <button class="btn btn-link" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal4"
+                                            style="background-color: #EF8157;color: white;"
+                                            (click)="getSelectedUser()">Add
+                                            Address</button>
+                                    </ng-template>
+                                </p>
+                            </li>
+
+                            <li>
+                                <p class="description">
+                                    <i class="fas fa-phone me-3"></i>
+                                    <ng-container *ngIf="userData.phone; else addPhone">
+                                        <strong>+92{{ userData.phone }}</strong>
+                                    </ng-container>
+                                    <ng-template #addPhone>
+                                        <button class="btn btn-link" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal5"
+                                            style="background-color: #EF8157;color: white;"
+                                            (click)="getSelectedUser()">Add Phone
+                                            no</button>
+                                    </ng-template>
+                                </p>
+                            </li>
+                        </ul>`
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- bio Modal -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form>
+                        <div class="form-group">
+                            <label for="newName">Bio:</label>
+                            <input type="text" class="form-control" id="categoryName" [(ngModel)]="editData.bio">
+                        </div>
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" (click)="addNewElement()">Save changes</button>
+                    </form>
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- address Modal -->
+    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="newName">Address:</label>
+                            <input type="text" class="form-control" id="categoryName" [(ngModel)]="editData.address">
+                        </div>
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" (click)="addNewElement()">Save changes</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="newName"> Phone no:</label>
+                            <input type="text" class="form-control" id="categoryName" [(ngModel)]="editData.phone">
+                        </div>
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" (click)="addNewElement()">Save changes</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal12" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <img *ngIf="editData.image!==null" [src]="url+'uploads/'+editData.image" alt="" width="100px"
+                            height="100px">
+                        <label class="input-group-text" for="uploadpr"
+                            style="background-color: #fff; color: #547eda; cursor: pointer;">
+                            <b>Upload Photo</b>
+                            <input type="file" id="uploadpr" (change)="onselectImage($event)" hidden>
+                        </label>
+                        <button type="submit" class="btn btn-primary" (click)="addNewElement()">Save changes</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="col-md-12">
+            <div class="card card-user">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="card-title">Edit Profile</h4>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="mb-3">
+                                            <label for="uploadImage" class="form-label">Upload Image</label>
+                                            <div class="input-group">
+                                                <label class="input-group-text" for="uploadpr"
+                                                    style="background-color: #EF8157;color: white; cursor: pointer;">
+                                                    <b>Upload Photo</b>
+                                                    <input type="file" id="uploadpr" hidden>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" placeholder="Username" name="name">
+                                </div>
+                            </div>
+                            <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Bio</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 pr-1">
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input type="text" class="form-control" placeholder="Company">
+                                </div>
+                            </div>
+                            <div class="col-md-6 pl-1">
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control" placeholder="Last Name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <input type="text" class="form-control" placeholder="Home Address">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>City</label>
+                                    <input type="text" class="form-control" placeholder="City">
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label>Country</label>
+                                    <input type="text" class="form-control" placeholder="Country">
+                                </div>
+                            </div>
+                            <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                    <label>Postal Code</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 pl-1">
+                            <div class="form-group">
+                                <label>Phone no</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary"
+                            style="background-color: #EF8157;color: white;">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

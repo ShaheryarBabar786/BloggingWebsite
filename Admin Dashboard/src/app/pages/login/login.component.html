@@ -1,0 +1,56 @@
+<div class="wrapper">
+  <div class="page-header d-flex justify-content-center align-items-center"
+    style="background-image: url('../../../assets/img/login-image.jpg');">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
+          <div class="card card-register p-3"> <!-- Added p-3 class for padding -->
+            <h3 class="title text-center">Login</h3>
+            <form class="register-form" (ngSubmit)="login(myForm.value)" #myForm="ngForm">
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-group form-group-no-border">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-email-85"></i>
+                    </span>
+                  </div>
+                  <input type="text" id="email" class="form-control" placeholder="Email" ngModel name="email">
+                </div>
+              </div>
+              <div class="form-group mb-5">
+                <label for="password">Password</label>
+                <div class="input-group form-group-no-border">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-key-25"></i>
+                    </span>
+                  </div>
+                  <input type="password" id="password" class="form-control" placeholder="Password" ngModel
+                    name="password">
+                </div>
+              </div>
+
+
+              <button class="btn btn-danger btn-block btn-round" type="submit" [disabled]="isButtonDisabled"
+                *ngIf="!isButtonDisabled">Login</button>
+              <button class="btn btn-danger btn-block btn-round" type="button" [disabled]="isButtonDisabled"
+                *ngIf="isButtonDisabled">Logging in...</button>
+
+
+
+
+
+            </form>
+            <div class="forgot">
+              <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="javascript:void(0);" class="btn btn-link btn-danger" (click)="navigateToSignUp()">Sign Up</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+<div class="page-header" data-parallax="true" style="background-image: url('./assets/img/daniel-olahh.jpg');">
+    <div class="filter"></div>
+    <div class="container">
+        <div class="motto text-center">
+            <h1>Shaheryar Blogs</h1>
+            <h3>Start your blogging journey from here</h3>
+            <br />
+
+            <button type="button" class="btn btn-outline-neutral btn-round" (click)="goToSignUp()">Signup</button>
+        </div>
+    </div>
+</div>
+<div class="main">
+    <div class="section text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mr-auto ml-auto">
+                    <h2 class="title">Let's talk Blogs</h2>
+                    <h5 class="description">A blog is a type of online platform where individuals or groups regularly
+                        post articles, thoughts, opinions, information, and other content related to a specific topic or
+                        a variety of subjects. </h5>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="section section-dark text-center">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="col-md-6">
+                    <h2 class="title">Let's talk about us</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <div class="card card-profile card-plain">
+                                <div class="card-avatar">
+                                    <a href="#avatar"><img src="./assets/img/faces/clem-onojeghuo-3.jpg" alt="..."></a>
+                                </div>
+                                <div class="card-block">
+                                    <a href="#paper-kit">
+                                        <div class="author">
+                                            <h4 class="card-title">Shaheryar</h4>
+                                            <h6 class="card-category">Product Designer and developer</h6>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i
+                                            class="fa fa-facebook"></i></a>
+
+                                    <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i
+                                            class="fa fa-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section landing-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mr-auto ml-auto">
+                    <h2 class="text-center">Keep in touch?</h2>
+                    <form class="contact-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Name</label>
+                                <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="nc-icon nc-single-02"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Name" (focus)="focus=true"
+                                        (blur)="focus=false">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Email</label>
+                                <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="nc-icon nc-email-85"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Email" (focus)="focus1=true"
+                                        (blur)="focus1=false">
+                                </div>
+                            </div>
+                        </div>
+                        <label>Message</label>
+                        <textarea class="form-control" rows="4"
+                            placeholder="Tell us your thoughts and feelings..."></textarea>
+                        <div class="row">
+                            <div class="col-md-4 mr-auto ml-auto">
+                                <button class="btn  btn-lg btn-fill"
+                                    style="background-color: #344D85; border-color: #344D85;">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

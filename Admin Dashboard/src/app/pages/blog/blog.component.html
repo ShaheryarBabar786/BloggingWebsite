@@ -1,0 +1,207 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h4 class="card-title">Blogs</h4>
+          </div>
+          <div class="col-auto">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add
+              Blog</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card-body">
+        <div class="table-responsive" *ngIf="blogs && blogs.length > 0">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                Image
+              </th>
+              <th>
+                Name
+              </th>
+              <th>
+                Heading
+              </th>
+              <th>
+                Description
+              </th>
+              <th>
+                Category
+              </th>
+              <th class="text-right">
+                Action
+              </th>
+
+
+
+
+            </thead>
+            <tbody>
+              <tr *ngFor="let blog of blogs; let i = index">
+                <td>
+                  <img *ngIf="blogData.image!==null" [src]="url+'uploads/'+blog.image" alt="" width="100px"
+                    height="100px">
+
+                </td>
+                <td>
+                  {{blog.name}}
+                </td>
+                <td>
+                  {{blog.mainHeading}}
+                </td>
+                <td [ngStyle]="{'width.px': blogExpandedStates[i] ? 200 : 20}" (click)="showAlert()">
+                  <div *ngIf="!blogExpandedStates[i]">
+                    {{ blog.description.slice(0, 20) }}.......
+                  </div>
+                  <div *ngIf="blogExpandedStates[i] || blog.description.length <= 20">
+                    {{ blog.description }}.......
+                  </div>
+                </td>
+
+
+                <td>
+                  {{blog.category}}
+                </td>
+                <td class="text-right">
+
+                  <button style="background-color: #EF8157;color: white;" type="button" class="btn btn-primary"
+                    data-bs-toggle="modal" data-bs-target="#exampleModaldetail" (click)="openUserDetailModal(blog)">
+                    Detail
+                  </button>&nbsp;&nbsp;
+
+
+                  <button class="btn btn-primary" (click)="deleteblogData(blog)"
+                    style="background-color: #EF8157;color: white;">Delete</button>&nbsp;&nbsp;
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                    style="background-color: #EF8157;color: white;">
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="alert alert-warning text-center" role="alert" *ngIf="(!blogs || blogs.length === 0)"
+          style="background-color: #EF8157;">
+          <span class="font-weight-bold">No data is available</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Blog</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="uploadImage" class="form-label">Upload Image</label>
+          <div class="input-group">
+            <label class="input-group-text" for="uploadpr"
+              style="background-color: #fff; color: #547eda; cursor: pointer;">
+              <b>Upload Photo</b>
+              <input type="file" id="uploadpr" (change)="onselectImage($event)" hidden>
+            </label>
+            <span class="input-group-text" *ngIf="selectedFileName" style="font-size: 10px;">{{ selectedFileName
+              }}</span>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="blogName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="blogName" [(ngModel)]="blogData.name">
+        </div>
+        <div class="mb-3">
+          <label for="blogHeading" class="form-label">Heading</label>
+          <input type="text" class="form-control" id="blogHeading" [(ngModel)]="blogData.mainHeading">
+        </div>
+        <div class="mb-3">
+          <label for="blogDescription" class="form-label">Blog Description</label>
+          <input type="text" class="form-control" id="blogDescription" [(ngModel)]="blogData.description">
+        </div>
+        <div class="mb-3">
+          <label for="blogCategory" class="form-label">Category</label>
+          <div class="d-flex align-items-center">
+            <select class="form-control" id="blogCategory" [(ngModel)]="blogData.category">
+              <option value="">Select a category</option>
+              <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+            </select>
+            <br>
+            <a (click)="navigateToCategoryPage()" class="btn btn-primary ms-2">Create New Category</a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button #closeButton type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="saveBlog()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModaldetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #34B5B8; color: #fff; border-bottom: none;">
+        <h5 class="modal-title" id="exampleModalLabel">Blog Detail</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" *ngIf="selectedBlog" style="padding: 20px;">
+        <div class="text-center mb-4">
+          <img *ngIf="selectedBlog && selectedBlog.image" class="img-fluid rounded-circle border border-primary"
+            [src]="url+'uploads/'+selectedBlog.image" alt="User Image" style="width: 150px; height: 150px;">
+          <h4 style="font-size: 24px; margin: 10px 0; color: #333;">{{ selectedBlog.name }}</h4>
+          <p style="font-size: 18px; color: #666;">{{ selectedBlog.category }}</p>
+        </div>
+        <hr style="border-top: 1px solid #ccc;">
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <div class="user-detail-item">
+              <h6 style="color: #333; margin-bottom: 5px; font-weight: bold;">Main heading</h6>
+              <p style="font-size: 16px; color: #555;">{{ selectedBlog.mainHeading }}</p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="user-detail-item">
+              <h6 style="color: #333; margin-bottom: 5px; font-weight: bold;">Description</h6>
+              <p style="font-size: 16px; color: #555;">{{ selectedBlog.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="border-top: none;">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+          style="background-color: #34B5B8;">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Blog</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
